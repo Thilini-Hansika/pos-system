@@ -1,0 +1,113 @@
+
+<div class="content-header" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <div class="container-fluid">
+            <div class="row mb-2">
+                    <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Manage Place Order</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                                <ol class="breadcrumb float-sm-right">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active">Manage place Order</li>
+                                    </ol>
+                                </div><!-- /.col -->
+  
+                            </div><!-- /.row -->
+                        </div><!-- /.container-fluid -->
+                      </div>
+                      <!-- /.content-header -->
+
+                      <form  #frmOrders="ngForm" (ngSubmit)="saveOrder()">
+                            <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                            <label for="txtId">Customer Id</label>
+                                            <!-- <select id="txtCustomerId" class="form-control">
+                                              <option selected>Choose...</option>
+                                              <option>...</option>
+                                            </select> -->
+                                            <input type="text" class="form-control" id="txtId">
+                                          </div>
+                                          <div class="form-group col-md-6">
+                                            <label for="txtOrderId">Order ID</label>
+                                            <input type="text" class="form-control" id="txtOrderId" placeholder="Enter Order Id">
+                                          </div>
+                                        </div>
+                                          <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                              <label for="txtCustomername">Customer Name</label>
+                                              <input type="text" class="form-control" id="txtCustomername" placeholder="Enter Customer name">
+                                            </div>
+                                            <!-- <div class="form-group col-md-6">
+                                              <label for="txtOrderDate">Order Date</label>
+                                              <input type="text" class="form-control" id="txtOrderDate" placeholder="Enter Order date">
+                                            </div> -->
+                                          </div>
+                                        <div class="form-row">
+                                          <div class="form-group col-md-2">
+                                              <label for="txtDescription" >Item code</label>
+                                            <select id="txtCode" class="form-control" name="txtCode" (change)="searchByItemCode()">
+                                              <option *ngFor="let Item of item"
+                                              >{{Item.id}}</option>
+                                              <option></option>
+                                            </select>
+                                            
+                                          </div>
+                                          <div class="form-group col-md-3">
+                                            <label for="txtDescription">Description</label>
+                                            <input type="text" class="form-control" id="txtDescription"  >
+                                          </div>
+                                          <div class="form-group col-md-2">
+                                            <label for="txtQty">Qty</label>
+                                            <input  *ngFor="let order of Order" type="text" [(ngModel)]="selectedOrder.qty" class="form-control" id="txtQty" name="qty" >
+                                          </div>
+                                          <div class="form-group col-md-3">
+                                            <label for="txtUnitPrice">Unit Price</label>
+                                            <input type="text" class="form-control" id="txtUnitPrice">
+                                          </div>
+                                          <div class="form-group col-md-2">
+                                            <label for="txtQtyOnHand">QtyOnHand</label>
+                                            <input type="text" class="form-control" id="txtQtyOnHand">
+                                          </div>
+                                        </div>
+                                        <div class="col-12">
+                                          <table id="tblCustomers" class="table table-bordered table-hover">
+                                            <thead>
+                                            <tr>
+                                              <th>Item Code</th>
+                                              <th>Description</th>
+                                              <th>Qty</th>
+                                              <th>Unit Price</th>
+                                              <th>Amount</th>
+                                              <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr *ngFor="let item of items | paginate: { itemsPerPage: 7, currentPage: p }"
+                                                (click)="selectItem(item)" [class.selected]="item==selectedItem" >
+                                              <td>{{item.id}}</td>
+                                              <td>{{item.name}}</td>
+                                              <td>{{qty}}</td>
+                                              <td>{{item.unitPrice}}</td>
+                                              <td>{{qty*item.unitPrice}}</td>
+                                              <td>
+                                                <i (click)="deleteItem(item)" class="fa fa-trash fa-2x"></i>
+                                              </td>
+                                            </tr>
+                                            </tbody>
+                               project             <tfoot>
+                                            <tr>
+                                              <td colspan="4">
+                                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                              </td>
+                                            </tr>
+                                            </tfoot>
+                                          </table>
+                                          <div>
+                                            <button type="submit" class="btn btn-outline-primary waves-effect" id="submit">Save</button>
+                                            &nbsp;
+                                            <button (click)="clear()" type="button" class="btn btn-outline-warning waves-effect"id="clear">Clear</button>
+                                          </div>
+                                        </div>
+                </form>
+                                      
+                                                                                      
